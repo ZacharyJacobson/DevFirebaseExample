@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app";
-import {getFirestore, doc, setDoc} from "firebase/firestore";
+import {getFirestore, doc, setDoc, getDoc, collectionGroup, getDocs, collection, query, where} from "firebase/firestore";
 
 var json = require("./login.json");
 
@@ -16,6 +16,8 @@ const firebaseApp = initializeApp({
 	clientX509CertUrl: json.client_x509_cert_url
 });
 
+
+
 console.log("Initializing Firestore");
 const firestore = getFirestore();
 console.log("Initialized Firestore");
@@ -23,9 +25,24 @@ console.log("Initialized Firestore");
 const testDoc = doc(firestore, "testCollection/testDocument")
 
 //write to the document
-console.log("Writing to Firestore");
-const docData = {
-	testfield: "testing2"
+console.log("Writing to Firestore in testDocument");
+const setDocData = {
+	testfield: "testing"
 };
-setDoc(testDoc, docData)
+setDoc(testDoc, setDocData);
 console.log("Wrote to Firestore");
+
+
+//read what we just wrote
+console.log("Reading from Firestore in testDocument");
+const docData = await getDoc(testDoc, "testfield");
+if(docData.exists()) console.log(docData.data());	//optionally wrap in JSON.stringify()
+else console.log("document does not exist")
+
+//read wildlife data from "WildlifeData" collection, not knowing all of the arbitrary document names
+console.log("Reading from Firestore in WildlifeData");
+const wildlifeCollection = collectionGroup(firestore, "WildlifeData");
+const wildlifeDocs = await getDocs(wildlifeCollection);
+wildlifeDocs.forEach((doc) => {
+	console.log(doc.id + ": " + JSON.stringify(doc.data()));
+});
