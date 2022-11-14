@@ -1,0 +1,11 @@
+Official documentation:
+https://cloud.google.com/firestore/docs/manage-data/add-data
+This documentation covers all possible API calls.  These can be conducted with a number of languages, all of which are documented.  For querying, filters can be optionally used, but a general stream can also be used with no filters.  This could be useful if column names are not known.
+
+Firebase Video Tutorial:
+https://www.youtube.com/watch?v=BjtxPj6jRM8
+After trying other video tutorials, this one appears to be the most optimal one.  It's condensed into a single 14 minute video. By being an official video from Firebase and a 2021 release, it's likely the most up to date tutorial.  It covers everything from initial app creation to how to use queries.
+
+Firebase Tips & Tricks
+https://firebase.google.com/docs/functions/tips
+This specific page of Google's official Firebase documentation is particularly useful.  It covers proper usage of the service and formatting correctness.
