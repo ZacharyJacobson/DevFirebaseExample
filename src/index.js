@@ -43,6 +43,10 @@ else console.log("document does not exist")
 console.log("Reading from Firestore in WildlifeData");
 const wildlifeCollection = collectionGroup(firestore, "WildlifeData");
 const wildlifeDocs = await getDocs(wildlifeCollection);
+var domout = ""
 wildlifeDocs.forEach((doc) => {
-	console.log(doc.id + ": " + JSON.stringify(doc.data()));
+	let out = doc.id + ": " + JSON.stringify(doc.data());
+	console.log(out);
+	domout += out + "<br><br>";
 });
+document.getElementById("output").innerHTML = domout
