@@ -41,10 +41,10 @@ else console.log("document does not exist")
 
 //read wildlife data from "WildlifeData" collection, not knowing all of the arbitrary document names
 console.log("Reading from Firestore in WildlifeData");
-const wildlifeCollection = collectionGroup(firestore, "WildlifeData");
-const wildlifeDocs = await getDocs(wildlifeCollection);
+const toecipCollection = collectionGroup(firestore, "toeClipCodes");
+const toeclipDocs = await getDocs(toecipCollection);
 var domout = ""
-wildlifeDocs.forEach((doc) => {
+toeclipDocs.forEach((doc) => {
 	let out = doc.id + ": " + JSON.stringify(doc.data());
 	console.log(out);
 	domout += out + "<br><br>";
